@@ -1,5 +1,5 @@
 {
-  "name": "effects-start",
+  "name": "place-picker",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

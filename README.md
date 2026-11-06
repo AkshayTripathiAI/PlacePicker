@@ -1,80 +1,53 @@
 # PlacePicker
 
-PlacePicker is a React-based application designed to help users manage and organize their collection of places they wish to visit or have visited. The application offers functionalities for selecting, organizing, and removing places, along with features such as geolocation-based sorting and a delete confirmation modal.
+A React app for building a personal list of places you would like to visit, with available places sorted by distance from your current location.
 
-## Components
+Built as a practice project while learning React (`useEffect`, side effects and cleanup).
 
-### DeleteConfirmation
+| Location prompt | Available places | Your list |
+| --- | --- | --- |
+| ![Geolocation request](screenshots/geolocation.png) | ![Available places](screenshots/availablePlaces.png) | ![To-go places](screenshots/toGoPlaces.png) |
 
-Provides a confirmation dialog for deleting a selected place.
+## Features
 
-**Props**:
-- `onConfirm`: Function triggered when the delete action is confirmed.
-- `onCancel`: Function triggered when the delete action is canceled.
+- Uses the browser Geolocation API to sort 18 sample places by distance from you
+- Click a place to add it to your "I'd like to visit" list
+- Your list is saved to `localStorage` and restored on reload
+- Removing a place opens a confirmation modal that auto-confirms after 3 seconds, with a progress bar showing the countdown
 
-### Modal
+Available places only appear after you allow location access; until then the section shows "Sorting places by distance...".
 
-Creates a modal dialog for displaying content or confirming actions.
+## Tech stack
 
-**Props**:
-- `open`: Boolean indicating whether the modal should be open or closed.
-- `children`: Content to be displayed within the modal.
-- `onClose`: Function triggered when the modal is closed.
+- React 18
+- Vite 4
+- Browser Geolocation API and `localStorage`
 
-### Places
+## Getting started
 
-Displays a list of places, either picked by the user or available for selection.
+Prerequisites: Node.js 18+ and npm.
 
-**Props**:
-- `title`: Title of the section.
-- `places`: Array of places to be displayed.
-- `fallbackText`: Text to be displayed when there are no places available.
-- `onSelectPlace`: Function triggered when a place is selected.
+```bash
+git clone https://github.com/AkshayTripathiAI/PlacePicker.git
+cd PlacePicker
+npm install
+npm run dev
+```
 
-### ProgressBar
+Then open the URL Vite prints (by default http://localhost:5173).
 
-Displays a progress bar indicating the remaining time for an action.
+Other scripts: `npm run build`, `npm run preview`.
 
-**Props**:
-- `timer`: Duration of the timer in milliseconds.
+## Project structure
 
-## Screenshots
-
-*Screenshot 1: Geolocation Request*
-
-![Geolocation Request](screenshots/geolocation.png)
-
-*Screenshot 2: Available Places*
-
-![Available Places](screenshots/availablePlaces.png)
-
-*Screenshot 3: To-Go Places*
-
-![To-Go Places](screenshots/toGoPlaces.png)
-
-## How to Use
-
-1. **Setting Up**
-   - Clone this repository to your local machine.
-   - Navigate to the project directory.
-
-2. **Installation**
-   - Run `npm install` to install dependencies.
-
-3. **Running the Application**
-   - Execute `npm start` to start the development server.
-   - Access the application at `http://localhost:3000`.
-
-4. **Usage**
-   - Browse available places and select those of interest.
-   - Use the delete confirmation dialog to confirm place removal.
-   - View available places sorted by distance.
-
-## Dependencies
-- React
-- ReactDOM
-
-## Notes
-- Uses localStorage to store selected places.
-- Geolocation feature sorts available places by distance.
-
+```
+src/
+  App.jsx                   # state, geolocation sorting, localStorage sync
+  data.js                   # sample places with coordinates
+  loc.js                    # haversine distance + sort helper
+  components/
+    Places.jsx              # renders a list of places
+    Modal.jsx               # <dialog> via createPortal
+    DeleteConfirmation.jsx  # auto-confirm timer with cleanup
+    ProgressBar.jsx
+```
