@@ -17,12 +17,12 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
   return d;
 }
 
+// Returns a sorted copy of the places, each annotated with `distance` in km.
 export function sortPlacesByDistance(places, lat, lon) {
-  const sortedPlaces = [...places];
-  sortedPlaces.sort((a, b) => {
-    const distanceA = calculateDistance(lat, lon, a.lat, a.lon);
-    const distanceB = calculateDistance(lat, lon, b.lat, b.lon);
-    return distanceA - distanceB;
-  });
-  return sortedPlaces;
+  return places
+    .map((place) => ({
+      ...place,
+      distance: calculateDistance(lat, lon, place.lat, place.lon),
+    }))
+    .sort((a, b) => a.distance - b.distance);
 }

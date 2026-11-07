@@ -170,7 +170,7 @@ export const AVAILABLE_PLACES = [
   },
   {
     id: 'p16',
-    title: 'Victoria Falls ',
+    title: 'Victoria Falls',
     image: {
       src: victoriaFallsImg,
       alt: 'The powerful cascade of Victoria Falls, a natural wonder between Zambia and Zimbabwe.',
