@@ -1,5 +1,7 @@
 # PlacePicker
 
+**Live demo:** https://akshaytripathiai.github.io/PlacePicker/
+
 A React app for building a personal list of places you would like to visit, with available places sorted by distance from your current location.
 
 Built as a practice project while learning React (`useEffect`, side effects and cleanup).
